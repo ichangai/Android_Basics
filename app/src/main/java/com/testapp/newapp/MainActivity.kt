@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.i("MYTAG", "MainActivity : Oncreate")
+        Log.i("MYTAG", "MainActivity : onCreate")
         val title = findViewById<TextView>(R.id.mainTitle)
         val inputField = findViewById<EditText>(R.id.userName)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
@@ -23,20 +23,43 @@ class MainActivity : AppCompatActivity() {
         submitBtn.setOnClickListener {
             username = inputField.text.toString()
             if (username == "") {
-                Toast.makeText(this@MainActivity, "Please, enter your name!", Toast.LENGTH_SHORT)
+//                Toast.makeText(this@MainActivity, "Please, enter your name!", Toast.LENGTH_SHORT).show()
             } else {
                 val msg = "Welcome home $username"
-                Log.i("MYTAG", msg)
                 title.text = msg
-                Log.i("MYTAG", "After displaying the message on the TextView")
                 inputField.text.clear()
                 offerBtn.visibility = VISIBLE
-            } 
+            }
         }
         offerBtn.setOnClickListener{
             val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("User", username)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("MYTAG", "MainActivity : OnStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("MYTAG", "MainActivity : OnResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("MYTAG", "MainActivity : OnPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("MYTAG", "MainActivity : OnStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("MYTAG", "MainActivity : OnDestroy")
     }
 }
